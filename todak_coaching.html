@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>토닥 코칭 — 사고 패턴 교정</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --dark: #1a1208;
+  --gold: #c4a882;
+  --cream: #f5f0e8;
+  --muted: #7a6a58;
+  --light: #e8d9c0;
+}
+body { background: var(--cream); color: var(--dark); font-family: 'Noto Sans KR', sans-serif; font-size: 15px; line-height: 1.8; }
+
+.hero { background: var(--dark); padding: 80px 24px 60px; text-align: center; }
+.hero-tag { font-size: 11px; letter-spacing: 0.2em; color: var(--gold); margin-bottom: 20px; }
+.hero-title { font-size: 28px; font-weight: 700; color: #f5f0e8; line-height: 1.4; margin-bottom: 16px; }
+.hero-title span { color: var(--gold); }
+.hero-sub { font-size: 14px; color: #9a8878; line-height: 1.8; max-width: 320px; margin: 0 auto 32px; }
+.hero-price { display: inline-block; background: rgba(196,168,130,0.15); border: 1px solid var(--gold); color: var(--gold); font-size: 13px; padding: 8px 20px; border-radius: 20px; }
+
+.section { padding: 48px 24px; max-width: 480px; margin: 0 auto; }
+.section-tag { font-size: 11px; letter-spacing: 0.15em; color: var(--gold); margin-bottom: 12px; }
+.section-title { font-size: 20px; font-weight: 700; color: var(--dark); margin-bottom: 24px; line-height: 1.4; }
+
+.divider { width: 100%; height: 1px; background: var(--light); margin: 0; }
+
+/* 타겟 카드 */
+.target-list { display: flex; flex-direction: column; gap: 12px; }
+.target-item { display: flex; gap: 14px; align-items: flex-start; padding: 16px; background: white; border-radius: 10px; border: 1px solid var(--light); }
+.target-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--gold); margin-top: 8px; flex-shrink: 0; }
+.target-text { font-size: 14px; color: var(--dark); line-height: 1.7; }
+
+/* 사전 조건 */
+.pre-list { display: flex; flex-direction: column; gap: 10px; }
+.pre-item { display: flex; gap: 12px; align-items: center; padding: 14px 16px; background: white; border-radius: 8px; border-left: 3px solid var(--gold); }
+.pre-num { font-size: 11px; font-weight: 700; color: var(--gold); min-width: 20px; }
+.pre-text { font-size: 13px; color: var(--dark); }
+
+/* 커리큘럼 */
+.curriculum { display: flex; flex-direction: column; gap: 16px; }
+.curr-item { background: white; border-radius: 12px; overflow: hidden; border: 1px solid var(--light); }
+.curr-header { background: var(--dark); padding: 14px 20px; display: flex; align-items: center; gap: 12px; }
+.curr-num { width: 28px; height: 28px; border-radius: 50%; background: var(--gold); display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; color: var(--dark); flex-shrink: 0; }
+.curr-title { font-size: 14px; font-weight: 500; color: #f5f0e8; }
+.curr-body { padding: 16px 20px; }
+.curr-section { margin-bottom: 12px; }
+.curr-section-title { font-size: 11px; letter-spacing: 0.1em; color: var(--gold); margin-bottom: 6px; }
+.curr-content { font-size: 13px; color: var(--muted); line-height: 1.8; }
+.curr-homework { background: var(--cream); border-radius: 6px; padding: 10px 14px; margin-top: 10px; }
+.curr-homework-title { font-size: 11px; color: var(--gold); margin-bottom: 4px; letter-spacing: 0.08em; }
+.curr-homework-text { font-size: 12px; color: var(--muted); line-height: 1.7; }
+
+/* 패키지 */
+.packages { display: flex; flex-direction: column; gap: 12px; }
+.pkg { background: white; border-radius: 12px; padding: 20px; border: 1px solid var(--light); position: relative; }
+.pkg.featured { border: 2px solid var(--gold); }
+.pkg-badge { position: absolute; top: -10px; right: 16px; background: var(--gold); color: var(--dark); font-size: 10px; font-weight: 700; padding: 3px 10px; border-radius: 10px; letter-spacing: 0.05em; }
+.pkg-name { font-size: 16px; font-weight: 700; color: var(--dark); margin-bottom: 4px; }
+.pkg-desc { font-size: 12px; color: var(--muted); margin-bottom: 12px; }
+.pkg-price { font-size: 22px; font-weight: 700; color: var(--dark); }
+.pkg-price span { font-size: 13px; color: var(--muted); font-weight: 400; margin-left: 4px; }
+.pkg-discount { font-size: 12px; color: var(--gold); margin-top: 4px; }
+
+/* 신청 버튼 */
+.cta-section { padding: 48px 24px; background: var(--dark); text-align: center; }
+.cta-title { font-size: 20px; font-weight: 700; color: #f5f0e8; margin-bottom: 8px; }
+.cta-sub { font-size: 13px; color: #9a8878; margin-bottom: 28px; line-height: 1.8; }
+.cta-btn { display: block; background: var(--gold); color: var(--dark); font-size: 15px; font-weight: 700; padding: 18px 24px; border-radius: 10px; text-decoration: none; margin-bottom: 12px; font-family: 'Noto Sans KR', sans-serif; }
+.cta-notice { font-size: 11px; color: #7a6a58; line-height: 1.8; }
+
+/* 조건 배너 */
+.condition-banner { background: rgba(196,168,130,0.1); border: 1px solid rgba(196,168,130,0.3); border-radius: 10px; padding: 16px 20px; margin-bottom: 0; }
+.condition-banner-title { font-size: 12px; color: var(--gold); margin-bottom: 8px; letter-spacing: 0.08em; }
+.condition-banner-text { font-size: 13px; color: #9a8878; line-height: 1.8; }
+</style>
+</head>
+<body>
+
+<!-- 히어로 -->
+<div class="hero">
+  <div class="hero-tag">TODAK COACHING</div>
+  <h1 class="hero-title">내 생각이 왜 이런지<br><span>같이 찾아봐요</span></h1>
+  <p class="hero-sub">책과 영상을 보고 난 후<br>사고 패턴을 직접 교정하는<br>1:1 대화 코칭</p>
+  <div class="hero-price">1회 1시간 · 4만원</div>
+</div>
+
+<!-- 이런 분들께 -->
+<div class="section">
+  <div class="section-tag">WHO</div>
+  <div class="section-title">이런 분들께 맞아요</div>
+  <div class="target-list">
+    <div class="target-item">
+      <div class="target-dot"></div>
+      <div class="target-text">열심히 사는데 왜 이렇게 공허한지 모르겠는 분</div>
+    </div>
+    <div class="target-item">
+      <div class="target-dot"></div>
+      <div class="target-text">번아웃이 자꾸 반복되는데 의지 문제가 아닌 것 같은 분</div>
+    </div>
+    <div class="target-item">
+      <div class="target-dot"></div>
+      <div class="target-text">내 생각 패턴을 알게 됐는데 혼자 바꾸기 어려운 분</div>
+    </div>
+    <div class="target-item">
+      <div class="target-dot"></div>
+      <div class="target-text">나한테만 왜 이렇게 가혹한지 이유를 찾고 싶은 분</div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- 사전 조건 -->
+<div class="section">
+  <div class="section-tag">BEFORE</div>
+  <div class="section-title">코칭 전 준비해주세요</div>
+  <div class="pre-list">
+    <div class="pre-item">
+      <div class="pre-num">01</div>
+      <div class="pre-text">마인드풀 무료 진단 완료</div>
+    </div>
+    <div class="pre-item">
+      <div class="pre-num">02</div>
+      <div class="pre-text">번아웃 유튜브 영상 시청</div>
+    </div>
+    <div class="pre-item">
+      <div class="pre-num">03</div>
+      <div class="pre-text">무료 줌 미팅 무료 완료</div>
+    </div>
+    <div class="pre-item">
+      <div class="pre-num">04</div>
+      <div class="pre-text">생각오류 수정 가이드 PDF 읽기</div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- 커리큘럼 -->
+<div class="section">
+  <div class="section-tag">CURRICULUM</div>
+  <div class="section-title">4회 커리큘럼</div>
+  <div class="curriculum">
+
+    <div class="curr-item">
+      <div class="curr-header">
+        <div class="curr-num">1</div>
+        <div class="curr-title">나를 알아가는 시간</div>
+      </div>
+      <div class="curr-body">
+        <div class="curr-section">
+          <div class="curr-section-title">REVIEW</div>
+          <div class="curr-content">진단 결과 함께 들여다보기<br>내 생각 패턴의 뿌리 찾기<br>언제부터 이 패턴이 시작됐는지</div>
+        </div>
+        <div class="curr-homework">
+          <div class="curr-homework-title">HOMEWORK</div>
+          <div class="curr-homework-text">하루 감정 일기 7일 · 오늘 잘한 것 3가지 적기</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="curr-item">
+      <div class="curr-header">
+        <div class="curr-num">2</div>
+        <div class="curr-title">패턴 교정 시작</div>
+      </div>
+      <div class="curr-body">
+        <div class="curr-section">
+          <div class="curr-section-title">REVIEW</div>
+          <div class="curr-content">7일 일기에서 패턴 찾기<br>내가 가장 자주 하는 인지 오류 확인</div>
+        </div>
+        <div class="curr-section">
+          <div class="curr-section-title">WORK</div>
+          <div class="curr-content">자기비판형 → 친구한테 하듯 나한테 말하기<br>미래불안형 → 지금 이 순간 집중하는 연습<br>흘려보내기형 → 감정에 이름 붙이는 연습</div>
+        </div>
+        <div class="curr-homework">
+          <div class="curr-homework-title">HOMEWORK</div>
+          <div class="curr-homework-text">패턴이 나오는 순간 알아채고 메모하기</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="curr-item">
+      <div class="curr-header">
+        <div class="curr-num">3</div>
+        <div class="curr-title">일상 적용</div>
+      </div>
+      <div class="curr-body">
+        <div class="curr-section">
+          <div class="curr-section-title">REVIEW</div>
+          <div class="curr-content">패턴 메모 함께 분석<br>실제 삶에서 어떤 순간에 터지는지 파악</div>
+        </div>
+        <div class="curr-section">
+          <div class="curr-section-title">WORK</div>
+          <div class="curr-content">일 / 연애 / 관계 중 가장 힘든 영역 집중<br>그 영역에서 패턴 교정하는 구체적 방법</div>
+        </div>
+        <div class="curr-homework">
+          <div class="curr-homework-title">HOMEWORK</div>
+          <div class="curr-homework-text">교정 방법 7일 실천 · 몸 움직이기 루틴 연결</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="curr-item">
+      <div class="curr-header">
+        <div class="curr-num">4</div>
+        <div class="curr-title">나만의 루틴 설계</div>
+      </div>
+      <div class="curr-body">
+        <div class="curr-section">
+          <div class="curr-section-title">REVIEW</div>
+          <div class="curr-content">7일 실천 리뷰 · 달라진 것 확인</div>
+        </div>
+        <div class="curr-section">
+          <div class="curr-section-title">WORK</div>
+          <div class="curr-content">나만의 생각 루틴 만들기<br>아침 / 저녁 마음 체크인 설계<br>몸과 마음을 연결하는 일상 루틴</div>
+        </div>
+        <div class="curr-homework">
+          <div class="curr-homework-title">FINISH</div>
+          <div class="curr-homework-text">혼자 할 수 있는 것 정리 · 필요 시 추가 회차 안내</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- 패키지 -->
+<div class="section">
+  <div class="section-tag">PACKAGE</div>
+  <div class="section-title">패키지 선택</div>
+  <div class="packages">
+
+    <div class="pkg">
+      <div class="pkg-name">단회</div>
+      <div class="pkg-desc">1회 1시간 · 가볍게 시작하고 싶은 분</div>
+      <div class="pkg-price">4만원<span>/ 1회</span></div>
+    </div>
+
+    <div class="pkg featured">
+      <div class="pkg-badge">추천</div>
+      <div class="pkg-name">기본 4회</div>
+      <div class="pkg-desc">1~4회차 전체 커리큘럼</div>
+      <div class="pkg-price">14만원<span>/ 4회</span></div>
+      <div class="pkg-discount">2만원 할인</div>
+    </div>
+
+    <div class="pkg">
+      <div class="pkg-name">심화 8회</div>
+      <div class="pkg-desc">4회 완료 후 심화 과정 희망하는 분</div>
+      <div class="pkg-price">26만원<span>/ 8회</span></div>
+      <div class="pkg-discount">6만원 할인</div>
+    </div>
+
+  </div>
+</div>
+
+<!-- CTA -->
+<div class="cta-section">
+  <div class="cta-title">지금 신청하기</div>
+  <p class="cta-sub">사전 조건 4가지 완료 후<br>카카오톡으로 신청해주세요</p>
+  <a href="https://open.kakao.com/o/ssAR1vni" class="cta-btn">카카오톡으로 신청하기 →</a>
+  <div class="cta-notice">
+    신청 후 24시간 이내 일정 조율 드려요<br>
+    구글 미트로 진행됩니다
+  </div>
+</div>
+
+<div style="text-align:center;padding:20px;background:#1a1208;">
+  <a href="./todak_landing_complete.html" style="font-size:12px;color:#7a6a58;text-decoration:none;">← 토닥필라 홈으로</a>
+  &nbsp;&nbsp;|&nbsp;&nbsp;
+  <a href="./todak_mind_code.html" style="font-size:12px;color:#7a6a58;text-decoration:none;">마인드풀 진단 →</a>
+</div>
+</body>
+</html>

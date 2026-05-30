@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>토닥필라 — 몸과 마음을 함께</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;600&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{--dark:#1a1208;--gold:#c4a882;--cream:#f5f0e8;--muted:#7a6a58;--light:#e8d9c0;--white:#faf8f4;}
+body{background:var(--white);color:var(--dark);font-family:'Noto Sans KR',sans-serif;font-size:15px;line-height:1.8;}
+
+/* 네비 */
+nav{position:fixed;top:0;left:0;right:0;z-index:999;background:rgba(26,18,8,0.96);backdrop-filter:blur(8px);border-bottom:1px solid rgba(196,168,130,0.12);}
+.nav-inner{max-width:640px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:14px 24px;}
+.nav-logo{font-size:15px;font-weight:600;color:var(--gold);font-family:'Noto Serif KR',serif;text-decoration:none;}
+.nav-links{display:flex;gap:2px;}
+.nav-links a{font-size:12px;color:#9a8878;text-decoration:none;padding:6px 12px;border-radius:6px;}
+.nav-links a:hover{color:var(--gold);}
+.nav-cta{font-size:12px;font-weight:700;color:var(--dark);background:var(--gold);padding:8px 16px;border-radius:20px;text-decoration:none;}
+
+section{padding:72px 24px;scroll-margin-top:56px;}
+.inner{max-width:520px;margin:0 auto;}
+.sec-tag{font-size:11px;letter-spacing:0.2em;color:var(--gold);margin-bottom:10px;}
+.sec-title{font-size:24px;font-weight:600;color:var(--dark);margin-bottom:10px;line-height:1.4;font-family:'Noto Serif KR',serif;}
+.sec-sub{font-size:13px;color:var(--muted);margin-bottom:32px;line-height:1.9;}
+.divider{width:100%;height:1px;background:var(--light);}
+
+/* 히어로 */
+#home{background:var(--dark);padding:120px 24px 72px;text-align:center;}
+.hero-title{font-size:30px;font-weight:300;color:var(--cream);line-height:1.5;margin-bottom:14px;font-family:'Noto Serif KR',serif;}
+.hero-title strong{font-weight:700;color:var(--gold);}
+.hero-sub{font-size:13px;color:#9a8878;max-width:300px;margin:0 auto 12px;line-height:1.9;}
+
+/* 몸 마음 두 축 */
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:28px;}
+.col-card{border-radius:12px;padding:20px 18px;text-align:center;}
+.col-card.body{background:rgba(196,168,130,0.08);border:1px solid rgba(196,168,130,0.25);}
+.col-card.mind{background:rgba(122,156,196,0.08);border:1px solid rgba(122,156,196,0.25);}
+.col-icon{font-size:22px;margin-bottom:8px;}
+.col-name{font-size:13px;font-weight:700;color:var(--dark);margin-bottom:4px;}
+.col-desc{font-size:11px;color:var(--muted);line-height:1.6;}
+.col-badge{font-size:10px;padding:3px 10px;border-radius:10px;margin-top:8px;display:inline-block;}
+.col-badge.b{background:rgba(196,168,130,0.15);color:var(--gold);}
+.col-badge.m{background:rgba(122,156,196,0.15);color:#7a9cc4;}
+
+/* 프로그램 */
+.prog-steps{display:flex;flex-direction:column;gap:0;}
+.prog-step{display:flex;gap:14px;align-items:stretch;}
+.step-left{display:flex;flex-direction:column;align-items:center;width:34px;}
+.step-dot{width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;flex-shrink:0;}
+.free{background:var(--white);border:1.5px solid #ccc;color:#aaa;}
+.semi{background:rgba(196,168,130,0.12);border:1.5px solid var(--gold);color:var(--gold);}
+.paid{background:var(--gold);color:var(--dark);}
+.dream{background:var(--dark);border:1.5px dashed var(--gold);color:var(--gold);}
+.step-line{width:1px;flex:1;background:rgba(196,168,130,0.2);margin:4px 0;}
+.step-body{flex:1;padding-bottom:18px;}
+.step-name{font-size:13px;font-weight:600;color:var(--dark);margin-bottom:2px;}
+.step-desc{font-size:12px;color:var(--muted);margin-bottom:4px;line-height:1.6;}
+.step-price{font-size:11px;font-weight:600;color:var(--gold);}
+.step-btn{display:inline-block;margin-top:8px;font-size:11px;color:var(--dark);background:var(--gold);padding:5px 12px;border-radius:5px;text-decoration:none;font-family:'Noto Sans KR',sans-serif;font-weight:700;}
+.step-btn.out{background:transparent;border:1px solid var(--gold);color:var(--gold);}
+
+/* 소개 */
+#about{background:var(--cream);}
+.quote-box{background:var(--white);border-radius:12px;padding:24px 20px;border-left:3px solid var(--gold);}
+.quote-text{font-size:15px;font-weight:300;color:var(--dark);line-height:1.9;margin-bottom:12px;font-family:'Noto Serif KR',serif;}
+.quote-name{font-size:11px;color:var(--muted);letter-spacing:0.1em;}
+
+/* CTA */
+.cta-box{background:var(--dark);border-radius:12px;padding:24px 20px;text-align:center;margin-top:24px;}
+.cta-badge{display:inline-block;background:rgba(196,168,130,0.15);border:1px solid rgba(196,168,130,0.3);color:var(--gold);font-size:11px;padding:3px 12px;border-radius:20px;margin-bottom:12px;}
+.cta-title{font-size:16px;font-weight:600;color:var(--cream);margin-bottom:6px;}
+.cta-sub{font-size:12px;color:#7a6a58;margin-bottom:16px;}
+.cta-btn{display:block;background:var(--gold);color:var(--dark);font-size:14px;font-weight:700;padding:14px;border-radius:8px;text-decoration:none;font-family:'Noto Sans KR',sans-serif;}
+
+/* 플로팅 */
+.floating{position:fixed;bottom:20px;right:20px;z-index:998;}
+.floating a{display:block;background:var(--gold);color:var(--dark);font-size:13px;font-family:'Noto Sans KR',sans-serif;padding:12px 20px;border-radius:30px;text-decoration:none;font-weight:700;box-shadow:0 4px 16px rgba(0,0,0,0.2);}
+
+footer{background:var(--dark);padding:32px 24px;text-align:center;}
+.footer-logo{font-size:15px;font-weight:600;color:var(--gold);margin-bottom:6px;font-family:'Noto Serif KR',serif;}
+.footer-sub{font-size:11px;color:#5a4a38;line-height:1.8;}
+</style>
+</head>
+<body>
+
+<!-- 네비 -->
+<nav>
+  <div class="nav-inner">
+    <a href="#home" class="nav-logo">토닥필라</a>
+    <div class="nav-links">
+      <a href="#about">소개</a>
+      <a href="#program">프로그램</a>
+    </div>
+    <a href="https://cal.com/최지애-yyez0i/30min" class="nav-cta">무료 줌 신청</a>
+  </div>
+</nav>
+
+<!-- 홈 -->
+<section id="home">
+  <div class="inner">
+    <div class="sec-tag" style="color:var(--gold);">TODAK PILA · 토닥필라</div>
+    <h1 class="hero-title">몸과 마음을<br><strong>함께 보는 곳</strong></h1>
+    <p class="hero-sub">재활 필라테스로 몸의 중심을 세우고<br>마인드 코칭으로 생각 패턴을 교정해요</p>
+
+    <div class="two-col">
+      <div class="col-card body">
+        <div class="col-icon">🙆</div>
+        <div class="col-name">몸</div>
+        <div class="col-desc">재활 필라테스<br>자세교정 · 체형관리</div>
+        <div class="col-badge b">8주 VOD</div>
+      </div>
+      <div class="col-card mind">
+        <div class="col-icon">🧠</div>
+        <div class="col-name">마음</div>
+        <div class="col-desc">마인드 코칭<br>생각패턴 · 인지교정</div>
+        <div class="col-badge m">1:1 코칭</div>
+      </div>
+    </div>
+
+    <a href="#program" style="display:block;background:var(--gold);color:var(--dark);font-size:14px;font-weight:700;padding:14px;border-radius:8px;text-decoration:none;text-align:center;font-family:'Noto Sans KR',sans-serif;">나의 여정 시작하기 →</a>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- 프로그램 -->
+<section id="program">
+  <div class="inner">
+    <div class="sec-tag">PROGRAM</div>
+    <h2 class="sec-title">나를 만나는 여정</h2>
+    <p class="sec-sub">어디서부터 시작해도 괜찮아요.<br>지애샘이 함께 찾아드릴게요.</p>
+
+    <div class="prog-steps">
+
+      <div class="prog-step">
+        <div class="step-left"><div class="step-dot free">1</div><div class="step-line"></div></div>
+        <div class="step-body">
+          <div class="step-name">마인드풀 진단</div>
+          <div class="step-desc">3분으로 내 생각 패턴 파악하기</div>
+          <div class="step-price">무료</div>
+          <a href="./todak_mindfull_v2.html" class="step-btn">진단하기 →</a>
+        </div>
+      </div>
+
+      <div class="prog-step">
+        <div class="step-left"><div class="step-dot free">2</div><div class="step-line"></div></div>
+        <div class="step-body">
+          <div class="step-name">무료 전자책</div>
+          <div class="step-desc">진단 후기 남기면 결과지 PDF 선물</div>
+          <div class="step-price">무료</div>
+          <a href="https://open.kakao.com/o/ssAR1vni" class="step-btn out">후기 남기고 받기 →</a>
+        </div>
+      </div>
+
+      <div class="prog-step">
+        <div class="step-left"><div class="step-dot semi">3</div><div class="step-line"></div></div>
+        <div class="step-body">
+          <div class="step-name">무료 줌 미팅</div>
+          <div class="step-desc">30분 1:1 · 내 패턴 뿌리 찾기</div>
+          <div class="step-price">무료</div>
+          <a href="https://cal.com/최지애-yyez0i/30min" class="step-btn">신청하기 →</a>
+        </div>
+      </div>
+
+      <div class="prog-step">
+        <div class="step-left"><div class="step-dot paid">4</div><div class="step-line"></div></div>
+        <div class="step-body">
+          <div class="step-name">토닥 코칭</div>
+          <div class="step-desc">🧠 마음 · 사고패턴 교정 1:1</div>
+          <div class="step-price">4만원/회</div>
+          <a href="./todak_coaching.html" class="step-btn">자세히 보기 →</a>
+        </div>
+      </div>
+
+      <div class="prog-step">
+        <div class="step-left"><div class="step-dot paid">5</div><div class="step-line"></div></div>
+        <div class="step-body">
+          <div class="step-name">8주 VOD</div>
+          <div class="step-desc">🙆 몸 · 재활교정 + 자기사랑 루틴</div>
+          <div class="step-price">30만원대 · 7월 오픈</div>
+          <a href="https://open.kakao.com/o/ssAR1vni" class="step-btn out">얼리버드 알림 →</a>
+        </div>
+      </div>
+
+      <div class="prog-step">
+        <div class="step-left"><div class="step-dot dream">✓</div></div>
+        <div class="step-body">
+          <div class="step-name">꿈의 고객 · 통합 프로그램</div>
+          <div class="step-desc">🙆 + 🧠 몸과 마음 함께 · 5명 한정</div>
+          <div class="step-price">가격 미정</div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="cta-box">
+      <div class="cta-badge">✓ 무료 · 30분 · 줌으로 진행</div>
+      <div class="cta-title">지금 바로 시작하기</div>
+      <p class="cta-sub">무료 줌 미팅으로 내 패턴의 뿌리를 찾아봐요</p>
+      <a href="https://cal.com/최지애-yyez0i/30min" class="cta-btn">무료 줌 미팅 신청하기 →</a>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- 소개 -->
+<section id="about">
+  <div class="inner">
+    <div class="sec-tag">ABOUT</div>
+    <h2 class="sec-title">토닥필라 지애샘</h2>
+    <p class="sec-sub">체육학 + 심리학 배경의 재활 필라테스 전문가.<br>10년의 경험으로 몸과 마음을 함께 봐요.</p>
+    <div class="quote-box">
+      <div class="quote-text">
+        "토닥필라는 당신을 바꾸는 곳이 아니에요.<br>
+        당신이 이미 충분하다는 것을<br>
+        스스로 발견하는 거울 같은 곳이에요."
+      </div>
+      <div class="quote-name">토닥필라 지애샘 · @cho.cochio</div>
+    </div>
+  </div>
+</section>
+
+<!-- 플로팅 -->
+<div class="floating">
+  <a href="https://cal.com/최지애-yyez0i/30min">무료 줌 신청 →</a>
+</div>
+
+<footer>
+  <div class="footer-logo">토닥필라</div>
+  <div class="footer-sub">토닥필라 지애샘 · @cho.cochio<br>몸과 마음을 함께</div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,1353 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>토닥 커스 — 나를 사랑하는 법을 배우는 4주</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;500;600&family=Noto+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #F5F0E8;
+    --warm-white: #FAF7F2;
+    --charcoal: #2C2C2C;
+    --soft-charcoal: #4A4A4A;
+    --teal: #7AA8A1;
+    --teal-light: #A8C5C0;
+    --teal-dark: #5A8A83;
+    --blush: #E8D5C4;
+    --gold: #C4A882;
+    --rose: #D4A5A5;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--warm-white);
+    color: var(--charcoal);
+    font-family: 'Noto Sans KR', sans-serif;
+    font-weight: 300;
+    line-height: 1.8;
+    overflow-x: hidden;
+  }
+
+  /* =====================
+     HERO — 문제제기
+  ===================== */
+  .hero {
+    min-height: 100vh;
+    background: var(--charcoal);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 80px 24px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse at 70% 30%, rgba(122,168,161,0.12) 0%, transparent 55%),
+      radial-gradient(ellipse at 25% 75%, rgba(212,165,165,0.08) 0%, transparent 50%);
+    animation: breathe 9s ease-in-out infinite;
+  }
+
+  @keyframes breathe {
+    0%,100% { transform: scale(1); }
+    50% { transform: scale(1.04); }
+  }
+
+  .hero-inner { position: relative; max-width: 640px; }
+
+  .hero-eyebrow {
+    font-size: 11px;
+    letter-spacing: 5px;
+    color: var(--teal-light);
+    text-transform: uppercase;
+    margin-bottom: 40px;
+    opacity: 0;
+    animation: fadeUp 0.9s ease forwards 0.2s;
+  }
+
+  .hero-main {
+    font-family: 'Noto Serif KR', serif;
+    font-size: clamp(32px, 6vw, 60px);
+    font-weight: 300;
+    color: var(--cream);
+    line-height: 1.45;
+    margin-bottom: 32px;
+    opacity: 0;
+    animation: fadeUp 0.9s ease forwards 0.5s;
+  }
+
+  .hero-main .point {
+    color: var(--teal-light);
+    display: block;
+  }
+
+  .hero-main .point2 {
+    color: var(--rose);
+    display: block;
+  }
+
+  .hero-sub {
+    font-size: 15px;
+    color: rgba(245,240,232,0.5);
+    line-height: 2.1;
+    margin-bottom: 56px;
+    opacity: 0;
+    animation: fadeUp 0.9s ease forwards 0.8s;
+  }
+
+  .hero-cta-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    opacity: 0;
+    animation: fadeUp 0.9s ease forwards 1.1s;
+  }
+
+  .btn-main {
+    display: inline-block;
+    padding: 20px 64px;
+    background: var(--teal-light);
+    color: var(--charcoal);
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-decoration: none;
+    transition: all 0.4s ease;
+    cursor: pointer;
+    border: none;
+  }
+
+  .btn-main:hover { background: var(--cream); }
+
+  .hero-note {
+    font-size: 12px;
+    color: rgba(245,240,232,0.3);
+    letter-spacing: 1px;
+  }
+
+  .scroll-hint {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    opacity: 0;
+    animation: fadeUp 0.9s ease forwards 1.4s;
+  }
+
+  .scroll-line {
+    width: 1px;
+    height: 48px;
+    background: linear-gradient(to bottom, rgba(122,168,161,0.5), transparent);
+    animation: scrollAnim 2.2s ease-in-out infinite;
+  }
+
+  @keyframes scrollAnim {
+    0% { transform: scaleY(0); transform-origin: top; }
+    50% { transform: scaleY(1); transform-origin: top; }
+    51% { transform: scaleY(1); transform-origin: bottom; }
+    100% { transform: scaleY(0); transform-origin: bottom; }
+  }
+
+  /* =====================
+     SECTIONS
+  ===================== */
+  section { padding: 100px 24px; }
+  .container { max-width: 680px; margin: 0 auto; }
+  .container-wide { max-width: 860px; margin: 0 auto; }
+
+  .sec-label {
+    font-size: 10px;
+    letter-spacing: 5px;
+    color: var(--teal);
+    text-transform: uppercase;
+    margin-bottom: 24px;
+    display: block;
+  }
+
+  /* =====================
+     공감 — "이런 말 해본 적 있어요?"
+  ===================== */
+  .empathy {
+    background: var(--cream);
+  }
+
+  .empathy-title {
+    font-family: 'Noto Serif KR', serif;
+    font-size: clamp(26px, 5vw, 42px);
+    font-weight: 300;
+    line-height: 1.5;
+    color: var(--charcoal);
+    margin-bottom: 56px;
+  }
+
+  .empathy-title strong {
+    font-weight: 500;
+    color: var(--teal-dark);
+    display: block;
+  }
+
+  .voice-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-bottom: 56px;
+  }
+
+  .voice-item {
+    background: var(--warm-white);
+    padding: 28px 32px;
+    border-left: 3px solid var(--teal-light);
+    position: relative;
+  }
+
+  .voice-item::before {
+    content: '"';
+    font-family: 'Noto Serif KR', serif;
+    font-size: 60px;
+    color: var(--teal-light);
+    opacity: 0.3;
+    position: absolute;
+    top: 8px;
+    left: 16px;
+    line-height: 1;
+  }
+
+  .voice-text {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 16px;
+    color: var(--soft-charcoal);
+    line-height: 1.9;
+    padding-left: 20px;
+  }
+
+  .voice-who {
+    font-size: 11px;
+    color: var(--teal);
+    letter-spacing: 2px;
+    margin-top: 10px;
+    padding-left: 20px;
+  }
+
+  .empathy-closing {
+    background: var(--charcoal);
+    padding: 40px;
+  }
+
+  .empathy-closing p {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 17px;
+    color: var(--cream);
+    line-height: 2.2;
+    font-weight: 300;
+  }
+
+  .empathy-closing strong {
+    color: var(--teal-light);
+    font-weight: 400;
+  }
+
+  /* =====================
+     문제 — 진짜 원인
+  ===================== */
+  .problem {
+    background: var(--warm-white);
+  }
+
+  .problem-title {
+    font-family: 'Noto Serif KR', serif;
+    font-size: clamp(24px, 4vw, 38px);
+    font-weight: 300;
+    color: var(--charcoal);
+    line-height: 1.5;
+    margin-bottom: 48px;
+  }
+
+  .problem-title em {
+    font-style: normal;
+    color: var(--teal-dark);
+    border-bottom: 1px solid var(--teal-light);
+    padding-bottom: 2px;
+  }
+
+  .problem-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    margin-bottom: 48px;
+  }
+
+  .problem-card {
+    background: var(--cream);
+    padding: 32px 28px;
+  }
+
+  .problem-card-num {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 32px;
+    color: var(--teal-light);
+    font-weight: 300;
+    margin-bottom: 12px;
+    opacity: 0.5;
+  }
+
+  .problem-card-title {
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--charcoal);
+    margin-bottom: 8px;
+  }
+
+  .problem-card-desc {
+    font-size: 13px;
+    color: var(--soft-charcoal);
+    line-height: 1.9;
+  }
+
+  .problem-insight {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 18px;
+    color: var(--charcoal);
+    line-height: 1.9;
+    border-left: 2px solid var(--teal);
+    padding-left: 24px;
+  }
+
+  /* =====================
+     해결 — 토닥 커스 소개
+  ===================== */
+  .solution {
+    background: var(--charcoal);
+    color: var(--cream);
+  }
+
+  .solution-title {
+    font-family: 'Noto Serif KR', serif;
+    font-size: clamp(26px, 5vw, 44px);
+    font-weight: 300;
+    line-height: 1.5;
+    margin-bottom: 56px;
+    color: var(--cream);
+  }
+
+  .solution-title em {
+    font-style: normal;
+    color: var(--teal-light);
+  }
+
+  .solution-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    margin-bottom: 56px;
+  }
+
+  .solution-card {
+    display: grid;
+    grid-template-columns: 48px 1fr;
+    gap: 24px;
+    padding: 32px;
+    background: rgba(245,240,232,0.04);
+    border: 1px solid rgba(122,168,161,0.15);
+    align-items: start;
+    transition: all 0.3s ease;
+  }
+
+  .solution-card:hover {
+    background: rgba(122,168,161,0.08);
+    border-color: rgba(122,168,161,0.3);
+  }
+
+  .solution-card-icon {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 28px;
+    color: var(--teal-light);
+    font-weight: 300;
+    opacity: 0.7;
+    padding-top: 2px;
+  }
+
+  .solution-card-title {
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--cream);
+    margin-bottom: 8px;
+  }
+
+  .solution-card-desc {
+    font-size: 13px;
+    color: rgba(245,240,232,0.55);
+    line-height: 1.9;
+  }
+
+  .solution-quote {
+    text-align: center;
+    font-family: 'Noto Serif KR', serif;
+    font-size: clamp(18px, 3vw, 26px);
+    color: var(--teal-light);
+    line-height: 1.8;
+    font-weight: 300;
+    padding: 48px 0;
+    border-top: 1px solid rgba(122,168,161,0.2);
+    border-bottom: 1px solid rgba(122,168,161,0.2);
+  }
+
+  /* =====================
+     커리큘럼
+  ===================== */
+  .curriculum {
+    background: var(--cream);
+  }
+
+  .curriculum-title {
+    font-family: 'Noto Serif KR', serif;
+    font-size: clamp(24px, 4vw, 38px);
+    font-weight: 300;
+    color: var(--charcoal);
+    line-height: 1.5;
+    margin-bottom: 56px;
+  }
+
+  .week-list {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .week-row {
+    display: grid;
+    grid-template-columns: 72px 1fr;
+    border-top: 1px solid rgba(44,44,44,0.1);
+    padding: 36px 0;
+    transition: all 0.3s ease;
+  }
+
+  .week-row:last-child { border-bottom: 1px solid rgba(44,44,44,0.1); }
+  .week-row:hover .week-body { transform: translateX(6px); }
+
+  .week-tag {
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: var(--teal);
+    text-transform: uppercase;
+    padding-top: 4px;
+  }
+
+  .week-body { transition: transform 0.3s ease; }
+
+  .week-theme-tag {
+    font-size: 10px;
+    letter-spacing: 3px;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  .week-name {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 22px;
+    font-weight: 400;
+    color: var(--charcoal);
+    margin-bottom: 12px;
+  }
+
+  .week-sessions {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-bottom: 12px;
+  }
+
+  .week-session {
+    font-size: 13px;
+    color: var(--soft-charcoal);
+    padding-left: 14px;
+    position: relative;
+  }
+
+  .week-session::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 10px;
+    width: 5px; height: 1px;
+    background: var(--teal);
+  }
+
+  .week-outcome {
+    font-size: 13px;
+    color: var(--teal-dark);
+    font-style: italic;
+    font-family: 'Noto Serif KR', serif;
+  }
+
+  /* =====================
+     변화 여정
+  ===================== */
+  .transformation {
+    background: var(--warm-white);
+    text-align: center;
+  }
+
+  .transformation-title {
+    font-family: 'Noto Serif KR', serif;
+    font-size: clamp(24px, 4vw, 38px);
+    font-weight: 300;
+    color: var(--charcoal);
+    line-height: 1.5;
+    margin-bottom: 64px;
+  }
+
+  .before-after {
+    display: grid;
+    grid-template-columns: 1fr 48px 1fr;
+    gap: 0;
+    align-items: start;
+    max-width: 680px;
+    margin: 0 auto 64px;
+  }
+
+  .ba-col { text-align: left; }
+
+  .ba-label {
+    font-size: 10px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+    display: block;
+  }
+
+  .ba-label.before { color: var(--rose); }
+  .ba-label.after { color: var(--teal); }
+
+  .ba-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .ba-list li {
+    font-size: 14px;
+    line-height: 1.7;
+    padding-left: 16px;
+    position: relative;
+  }
+
+  .ba-list.before-list li {
+    color: var(--soft-charcoal);
+    opacity: 0.7;
+  }
+
+  .ba-list.before-list li::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 10px;
+    width: 5px; height: 1px;
+    background: var(--rose);
+  }
+
+  .ba-list.after-list li {
+    color: var(--charcoal);
+  }
+
+  .ba-list.after-list li::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 10px;
+    width: 5px; height: 1px;
+    background: var(--teal);
+  }
+
+  .ba-arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 36px;
+  }
+
+  .ba-arrow-line {
+    width: 24px;
+    height: 1px;
+    background: var(--teal-light);
+    position: relative;
+  }
+
+  .ba-arrow-line::after {
+    content: '→';
+    position: absolute;
+    right: -8px;
+    top: -9px;
+    color: var(--teal-light);
+    font-size: 14px;
+  }
+
+  /* =====================
+     코치 소개
+  ===================== */
+  .coach {
+    background: var(--cream);
+  }
+
+  .coach-inner {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .coach-name {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 34px;
+    font-weight: 300;
+    color: var(--charcoal);
+    margin-bottom: 6px;
+  }
+
+  .coach-role {
+    font-size: 12px;
+    letter-spacing: 2px;
+    color: var(--teal-dark);
+    margin-bottom: 32px;
+  }
+
+  .coach-text {
+    font-size: 15px;
+    color: var(--soft-charcoal);
+    line-height: 2.1;
+  }
+
+  .coach-text p + p { margin-top: 20px; }
+
+  .coach-quote {
+    margin-top: 32px;
+    font-family: 'Noto Serif KR', serif;
+    font-size: 17px;
+    color: var(--teal-dark);
+    line-height: 1.9;
+    border-left: 2px solid var(--teal-light);
+    padding-left: 24px;
+  }
+
+  /* =====================
+     가격 + 구매 유도
+  ===================== */
+  .pricing {
+    background: var(--charcoal);
+    text-align: center;
+  }
+
+  .pricing-title {
+    font-family: 'Noto Serif KR', serif;
+    font-size: clamp(26px, 5vw, 44px);
+    font-weight: 300;
+    color: var(--cream);
+    line-height: 1.5;
+    margin-bottom: 16px;
+  }
+
+  .pricing-sub {
+    font-size: 14px;
+    color: rgba(245,240,232,0.45);
+    margin-bottom: 64px;
+  }
+
+  .price-card {
+    background: rgba(245,240,232,0.04);
+    border: 1px solid rgba(122,168,161,0.25);
+    padding: 56px 40px;
+    max-width: 460px;
+    margin: 0 auto 48px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .price-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(to right, var(--teal-dark), var(--teal-light));
+  }
+
+  .price-tag {
+    font-size: 10px;
+    letter-spacing: 5px;
+    color: var(--teal-light);
+    text-transform: uppercase;
+    margin-bottom: 28px;
+  }
+
+  .price-amount {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 56px;
+    font-weight: 300;
+    color: var(--cream);
+    margin-bottom: 6px;
+    line-height: 1;
+  }
+
+  .price-amount span { font-size: 22px; }
+
+  .price-per {
+    font-size: 12px;
+    color: rgba(245,240,232,0.3);
+    margin-bottom: 40px;
+  }
+
+  .price-list {
+    list-style: none;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    border-top: 1px solid rgba(245,240,232,0.08);
+    padding-top: 32px;
+    margin-bottom: 40px;
+  }
+
+  .price-list li {
+    font-size: 14px;
+    color: rgba(245,240,232,0.6);
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+  }
+
+  .price-list li::before {
+    content: '✓';
+    color: var(--teal-light);
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  .price-limit {
+    font-size: 12px;
+    color: var(--rose);
+    letter-spacing: 1px;
+    margin-bottom: 28px;
+    opacity: 0.8;
+  }
+
+  .btn-purchase {
+    display: block;
+    width: 100%;
+    padding: 20px;
+    background: var(--teal-light);
+    color: var(--charcoal);
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-decoration: none;
+    transition: all 0.4s ease;
+    text-align: center;
+    cursor: pointer;
+    border: none;
+  }
+
+  .btn-purchase:hover { background: var(--cream); }
+
+  .pricing-reassure {
+    font-size: 13px;
+    color: rgba(245,240,232,0.3);
+    line-height: 2;
+  }
+
+  .pricing-reassure a {
+    color: rgba(245,240,232,0.5);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(245,240,232,0.2);
+  }
+
+  /* =====================
+     FAQ
+  ===================== */
+  .faq {
+    background: var(--warm-white);
+  }
+
+  .faq-title {
+    font-family: 'Noto Serif KR', serif;
+    font-size: clamp(24px, 4vw, 36px);
+    font-weight: 300;
+    color: var(--charcoal);
+    margin-bottom: 48px;
+  }
+
+  .faq-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .faq-item {
+    border-top: 1px solid rgba(44,44,44,0.1);
+  }
+
+  .faq-item:last-child {
+    border-bottom: 1px solid rgba(44,44,44,0.1);
+  }
+
+  .faq-q {
+    padding: 24px 0;
+    font-size: 15px;
+    font-weight: 400;
+    color: var(--charcoal);
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .faq-q::after {
+    content: '+';
+    font-size: 20px;
+    color: var(--teal);
+    flex-shrink: 0;
+    transition: transform 0.3s ease;
+  }
+
+  .faq-item.open .faq-q::after {
+    transform: rotate(45deg);
+  }
+
+  .faq-a {
+    font-size: 14px;
+    color: var(--soft-charcoal);
+    line-height: 2;
+    padding-bottom: 24px;
+    display: none;
+  }
+
+  .faq-item.open .faq-a { display: block; }
+
+  /* =====================
+     최종 CTA
+  ===================== */
+  .final-cta {
+    background: var(--teal-dark);
+    text-align: center;
+    padding: 120px 24px;
+  }
+
+  .final-cta-title {
+    font-family: 'Noto Serif KR', serif;
+    font-size: clamp(28px, 5vw, 48px);
+    font-weight: 300;
+    color: var(--cream);
+    line-height: 1.5;
+    margin-bottom: 24px;
+  }
+
+  .final-cta-sub {
+    font-size: 15px;
+    color: rgba(245,240,232,0.6);
+    line-height: 2.1;
+    margin-bottom: 48px;
+    max-width: 480px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .final-cta-sub strong {
+    color: var(--cream);
+    font-weight: 400;
+  }
+
+  /* FOOTER */
+  footer {
+    background: var(--charcoal);
+    padding: 48px 24px;
+    text-align: center;
+  }
+
+  .footer-brand {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 20px;
+    color: var(--cream);
+    font-weight: 300;
+    margin-bottom: 8px;
+  }
+
+  .footer-info {
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: rgba(245,240,232,0.25);
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+
+  .footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+  }
+
+  .footer-links a {
+    font-size: 12px;
+    color: rgba(245,240,232,0.3);
+    text-decoration: none;
+    letter-spacing: 1px;
+  }
+
+  .footer-links a:hover { color: var(--teal-light); }
+
+  /* STICKY CTA */
+  .sticky-cta {
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    background: var(--charcoal);
+    border-top: 1px solid rgba(122,168,161,0.2);
+    padding: 14px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 100;
+    transform: translateY(100%);
+    transition: transform 0.4s ease;
+  }
+
+  .sticky-cta.visible { transform: translateY(0); }
+
+  .sticky-info {
+    font-size: 13px;
+    color: rgba(245,240,232,0.6);
+  }
+
+  .sticky-info strong {
+    color: var(--teal-light);
+    font-size: 16px;
+  }
+
+  .sticky-btn {
+    padding: 12px 32px;
+    background: var(--teal-light);
+    color: var(--charcoal);
+    font-size: 13px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    cursor: pointer;
+    border: none;
+  }
+
+  .sticky-btn:hover { background: var(--cream); }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .fade-up {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+
+  .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+  @media (max-width: 600px) {
+    section { padding: 72px 20px; }
+    .problem-grid { grid-template-columns: 1fr; }
+    .before-after { grid-template-columns: 1fr; gap: 32px; }
+    .ba-arrow { display: none; }
+    .price-card { padding: 36px 20px; }
+    .solution-card { grid-template-columns: 1fr; gap: 12px; }
+    .sticky-cta { flex-direction: column; gap: 10px; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- STICKY CTA -->
+<div class="sticky-cta" id="sticky">
+  <div class="sticky-info">
+    토닥 커스 · 5명 한정 &nbsp;|&nbsp; <strong>₩320,000</strong>
+  </div>
+  <a href="https://cal.com/최지애-yyez0i/" class="sticky-btn" target="_blank">무료 상담 신청</a>
+</div>
+
+<!-- ① HERO 동경 방향 -->
+<section class="hero">
+  <div class="hero-inner">
+    <p class="hero-eyebrow">Todak Custom · Self Love Coaching</p>
+    <h1 class="hero-main">
+      나를 사랑하는 사람은<br>
+      <span class="point">관계에서도 달라요.</span>
+    </h1>
+    <p class="hero-sub">
+      흔들리지 않고, 갈구하지 않고,<br>
+      그냥 나답게.<br><br>
+      그런 사람이 되고 싶다면 —<br>
+      먼저 나 자신과 친해지는 것부터 시작해요.
+    </p>
+    <div class="hero-cta-wrap">
+      <a href="https://cal.com/최지애-yyez0i/" class="btn-main" target="_blank">나도 그렇게 되고 싶어요</a>
+      <span class="hero-note">5명 한정 · 무료 상담 먼저</span>
+    </div>
+  </div>
+  <div class="scroll-hint">
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- ② 공감 -->
+<section class="empathy">
+  <div class="container">
+    <span class="sec-label fade-up">혹시 이런 마음 있어요?</span>
+    <h2 class="empathy-title fade-up">
+      나도 그런 사람이 되고 싶어요.<br>
+      <strong>관계 안에서도 나를 잃지 않는 사람.</strong>
+    </h2>
+    <div class="voice-list">
+      <div class="voice-item fade-up">
+        <p class="voice-text">상대 기분에 휘둘리지 않고, 내 중심을 잡고 싶어요. 그런 사람이 얼마나 우아해 보이는지 몰라요.</p>
+        <p class="voice-who">30대 초반 · 결혼 2년차</p>
+      </div>
+      <div class="voice-item fade-up">
+        <p class="voice-text">불안하지 않고 그냥 나답게 사랑할 수 있으면 좋겠어요. 확인하고 싶은 마음 없이 편하게 있고 싶어요.</p>
+        <p class="voice-who">20대 후반 · 연애 중</p>
+      </div>
+      <div class="voice-item fade-up">
+        <p class="voice-text">내가 뭘 원하는지 알고, 그걸 자연스럽게 말할 수 있는 사람이 되고 싶어요. 더 이상 참고 싶지 않아요.</p>
+        <p class="voice-who">40대 초반 · 이혼 후 재연애</p>
+      </div>
+    </div>
+    <div class="empathy-closing fade-up">
+      <p>이게 특별한 사람만 되는 게 아니에요.<br><strong>자기 자신을 사랑하는 법을 배운 사람</strong>이 되는 거예요.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ③ 문제 — 진짜 원인 -->
+<section class="problem">
+  <div class="container">
+    <span class="sec-label fade-up">진짜 원인</span>
+    <h2 class="problem-title fade-up">
+      소통이 안 되는 게 아니에요.<br>
+      <em>나 자신과 먼저 단절된 거예요.</em>
+    </h2>
+    <div class="problem-grid">
+      <div class="problem-card fade-up">
+        <div class="problem-card-num">01</div>
+        <div class="problem-card-title">내 감정을 모른다</div>
+        <div class="problem-card-desc">힘든지 안 힘든지, 뭘 원하는지 모른 채 상대 감정만 살피게 돼요.</div>
+      </div>
+      <div class="problem-card fade-up">
+        <div class="problem-card-num">02</div>
+        <div class="problem-card-title">나한테 가혹하다</div>
+        <div class="problem-card-desc">"왜 이것도 못 해" — 친구한테는 절대 안 할 말을 나한테는 매일 해요.</div>
+      </div>
+      <div class="problem-card fade-up">
+        <div class="problem-card-num">03</div>
+        <div class="problem-card-title">경계가 없다</div>
+        <div class="problem-card-desc">싫어도 싫다고 못 하고, 참다가 한 번에 터지는 패턴이 반복돼요.</div>
+      </div>
+      <div class="problem-card fade-up">
+        <div class="problem-card-num">04</div>
+        <div class="problem-card-title">위로하는 법을 모른다</div>
+        <div class="problem-card-desc">힘들 때 나한테 뭐라고 해줘야 할지 몰라서, 상대한테서 받으려고 해요.</div>
+      </div>
+    </div>
+    <p class="problem-insight fade-up">
+      이 네 가지가 쌓이면 — 아무리 좋은 사람 만나도<br>
+      관계가 불안하고, 소통이 안 되고, 나만 지쳐요.
+    </p>
+  </div>
+</section>
+
+<!-- ④ 해결 — 토닥 커스 -->
+<section class="solution">
+  <div class="container">
+    <span class="sec-label fade-up" style="color:var(--teal-light)">해결책</span>
+    <h2 class="solution-title fade-up">
+      상대를 바꾸려 하기 전에<br>
+      <em>나 자신과 먼저 연결돼야 해요.</em>
+    </h2>
+    <div class="solution-cards">
+      <div class="solution-card fade-up">
+        <div class="solution-card-icon">01</div>
+        <div>
+          <div class="solution-card-title">내 감정을 알아채는 연습</div>
+          <div class="solution-card-desc">힘든지 안 힘든지, 뭘 원하는지 처음으로 나한테 물어봐요. 감정을 머리가 아닌 몸으로 느끼는 것부터 시작해요.</div>
+        </div>
+      </div>
+      <div class="solution-card fade-up">
+        <div class="solution-card-icon">02</div>
+        <div>
+          <div class="solution-card-title">나한테 다정하게 말하는 연습</div>
+          <div class="solution-card-desc">자기 비판 언어를 발견하고, 나한테 처음으로 친절한 말을 건네는 시간. 어색해도 괜찮아요.</div>
+        </div>
+      </div>
+      <div class="solution-card fade-up">
+        <div class="solution-card-icon">03</div>
+        <div>
+          <div class="solution-card-title">경계를 만드는 연습</div>
+          <div class="solution-card-desc">싫은 걸 싫다고, 원하는 걸 원한다고 말하는 법. 상대를 밀어내는 게 아니라 나를 잡는 거예요.</div>
+        </div>
+      </div>
+      <div class="solution-card fade-up">
+        <div class="solution-card-icon">04</div>
+        <div>
+          <div class="solution-card-title">나를 위로하는 연습</div>
+          <div class="solution-card-desc">상대한테 받으려 했던 위로를 내가 나한테 줄 수 있게 되면 — 관계에서 갈구하지 않게 돼요.</div>
+        </div>
+      </div>
+    </div>
+    <p class="solution-quote fade-up">
+      "남편이 달라지길 기다리는 게 아니라<br>
+      내가 먼저 나한테 돌아오는 거예요."
+    </p>
+  </div>
+</section>
+
+<!-- ⑤ 커리큘럼 -->
+<section class="curriculum">
+  <div class="container">
+    <span class="sec-label fade-up">4주 커리큘럼</span>
+    <h2 class="curriculum-title fade-up">
+      주 2회, 8회차.<br>
+      매주 나와 조금 더 가까워져요.
+    </h2>
+    <div class="week-list">
+      <div class="week-row fade-up">
+        <div class="week-tag">1주</div>
+        <div class="week-body">
+          <div class="week-theme-tag">나를 보는 주</div>
+          <div class="week-name">지금 나는 어디 있어</div>
+          <div class="week-sessions">
+            <div class="week-session">1회 — 지금 나는 어디 있어</div>
+            <div class="week-session">2회 — 내가 나한테 하는 말</div>
+          </div>
+          <div class="week-outcome">"아, 나 나한테 너무 가혹했구나"</div>
+        </div>
+      </div>
+      <div class="week-row fade-up">
+        <div class="week-tag">2주</div>
+        <div class="week-body">
+          <div class="week-theme-tag">나를 이해하는 주</div>
+          <div class="week-name">불안과 의심의 출처</div>
+          <div class="week-sessions">
+            <div class="week-session">3회 — 집착의 진짜 얼굴</div>
+            <div class="week-session">4회 — 의심의 출처</div>
+          </div>
+          <div class="week-outcome">"아, 이게 다 나 자신과의 문제였구나"</div>
+        </div>
+      </div>
+      <div class="week-row fade-up">
+        <div class="week-tag">3주</div>
+        <div class="week-body">
+          <div class="week-theme-tag">나를 대하는 방식을 바꾸는 주</div>
+          <div class="week-name">경계와 위로</div>
+          <div class="week-sessions">
+            <div class="week-session">5회 — 경계라는 선물</div>
+            <div class="week-session">6회 — 자기 위로 연습</div>
+          </div>
+          <div class="week-outcome">"아, 나도 나한테 친절할 수 있구나"</div>
+        </div>
+      </div>
+      <div class="week-row fade-up">
+        <div class="week-tag">4주</div>
+        <div class="week-body">
+          <div class="week-theme-tag">나로 서는 주</div>
+          <div class="week-name">나는 누구인가</div>
+          <div class="week-sessions">
+            <div class="week-session">7회 — 나는 어떤 사람이야</div>
+            <div class="week-session">8회 — 나로 사는 선언</div>
+          </div>
+          <div class="week-outcome">"나는 충분하고, 나를 사랑할 수 있다"</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ⑥ 변화 여정 -->
+<section class="transformation">
+  <div class="container">
+    <span class="sec-label fade-up">4주 후 달라지는 것</span>
+    <h2 class="transformation-title fade-up">
+      관계가 달라지기 전에<br>
+      내가 먼저 달라져요.
+    </h2>
+    <div class="before-after fade-up">
+      <div class="ba-col">
+        <span class="ba-label before">Before</span>
+        <ul class="ba-list before-list">
+          <li>연락 없으면 불안해서 자꾸 확인해요</li>
+          <li>싫어도 싫다고 못 해요</li>
+          <li>상대 기분에 따라 내 하루가 달라져요</li>
+          <li>나한테 뭐라고 해줘야 할지 몰라요</li>
+          <li>사랑받을 자격이 있는지 모르겠어요</li>
+        </ul>
+      </div>
+      <div class="ba-arrow"><div class="ba-arrow-line"></div></div>
+      <div class="ba-col">
+        <span class="ba-label after">After</span>
+        <ul class="ba-list after-list">
+          <li>불안이 와도 나를 달랠 수 있어요</li>
+          <li>싫은 걸 자연스럽게 말할 수 있어요</li>
+          <li>상대 기분과 나를 분리할 수 있어요</li>
+          <li>힘들 때 나한테 먼저 친절해져요</li>
+          <li>나는 충분한 사람이라는 걸 알아요</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ⑦ 코치 소개 -->
+<section class="coach">
+  <div class="container">
+    <span class="sec-label fade-up">코치 소개</span>
+    <div class="coach-inner">
+      <div class="fade-up">
+        <div class="coach-name">최지애</div>
+        <div class="coach-role">토닥필라 원장 · 재활 필라테스 · 마인드 코치 · 10년차</div>
+        <div class="coach-text">
+          <p>체육학과 심리학을 접목한 10년 경력으로, 몸과 마음이 연결된 코칭을 해왔어요.</p>
+          <p>겉으로는 잘 지내는 것 같은데 안에서는 계속 무너지는 분들을 많이 만났어요. 그리고 그 뿌리가 늘 같은 곳에 있었어요. 나 자신과의 관계가 끊어진 것.</p>
+          <p>저도 같은 길을 걸어왔기 때문에, 판단 없이 함께할 수 있어요. 이 프로그램은 그 연결을 다시 만드는 시간이에요.</p>
+        </div>
+        <div class="coach-quote fade-up">
+          "따뜻하게 들어와서, 우아하게 변하게 만드는 사람이 되고 싶어요.<br>
+          당신이 나를 사랑하는 법을 배우는 동안, 저는 그 옆에 있을게요."
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ⑧ 가격 + 구매유도 -->
+<section class="pricing" id="pricing">
+  <div class="container">
+    <span class="sec-label fade-up" style="color:var(--teal-light)">프로그램 신청</span>
+    <h2 class="pricing-title fade-up">
+      나한테 돌아오는<br>
+      4주를 시작해요.
+    </h2>
+    <p class="pricing-sub fade-up">지금 신청하면 무료 상담 먼저 진행해요.</p>
+    <div class="price-card fade-up">
+      <div class="price-tag">Todak Custom · 4 Weeks</div>
+      <div class="price-amount"><span>₩</span>320,000</div>
+      <div class="price-per">주 2회 · 8회차 · 회당 약 50분 · Zoom</div>
+      <ul class="price-list">
+        <li>8회차 1:1 Zoom 코칭 세션</li>
+        <li>매 세션 후 코칭 노트 공유</li>
+        <li>세션 간 카톡 피드백</li>
+        <li>MindFull 자기 사랑 진단 포함</li>
+        <li>4주 맞춤 커리큘럼</li>
+      </ul>
+      <div class="price-limit">⚠ 5명 한정 · 현재 마감 임박</div>
+      <a href="https://cal.com/최지애-yyez0i/" class="btn-purchase" target="_blank">
+        무료 상담 신청하기 →
+      </a>
+    </div>
+    <p class="pricing-reassure fade-up">
+      신청 후 일정 조율 연락을 드려요.<br>
+      궁금한 점은 인스타 DM →
+      <a href="https://instagram.com/cho.cochio" target="_blank">@cho.cochio</a>
+    </p>
+  </div>
+</section>
+
+<!-- ⑨ FAQ -->
+<section class="faq">
+  <div class="container">
+    <span class="sec-label fade-up">자주 묻는 질문</span>
+    <h2 class="faq-title fade-up">궁금한 게 있어요?</h2>
+    <div class="faq-list fade-up">
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">심리상담이랑 다른 게 뭐예요?</div>
+        <div class="faq-a">심리상담은 과거의 상처를 치유하는 것에 초점을 맞춰요. 토닥 커스는 지금 이 순간부터 나를 다르게 대하는 법을 직접 연습하는 코칭이에요. 진단보다 실천에 가까워요.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">심리적으로 많이 힘든 상태인데 괜찮을까요?</div>
+        <div class="faq-a">많이 힘든 분들이 더 필요한 프로그램이에요. 다만 정신과 치료가 필요한 상태라면 전문 치료를 먼저 받는 걸 권해드려요. 신청 전 무료 상담에서 함께 확인해드릴게요.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">4주 안에 진짜 달라질 수 있어요?</div>
+        <div class="faq-a">4주 안에 완전히 달라지는 건 아니에요. 하지만 나 자신을 보는 시선이 달라지는 건 느낄 수 있어요. 그 시선이 달라지면 관계도, 말하는 방식도 조금씩 변해요.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">Zoom이 불편한데 다른 방법도 돼요?</div>
+        <div class="faq-a">기본은 Zoom 화상 코칭이에요. 불편하신 분은 무료 상담 때 말씀해주시면 조율해드릴게요.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">환불이 돼요?</div>
+        <div class="faq-a">1회차 세션 이후에는 환불이 어려워요. 그래서 시작 전 무료 상담을 통해 충분히 확인하고 결정하시는 걸 권해드려요.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ⑩ 최종 CTA -->
+<section class="final-cta">
+  <div class="container">
+    <h2 class="final-cta-title fade-up">
+      나한테<br>
+      돌아올 준비가<br>
+      됐나요?
+    </h2>
+    <p class="final-cta-sub fade-up">
+      상대가 달라지길 기다리는 것보다<br>
+      <strong>내가 먼저 나한테 돌아오는 게 빨라요.</strong><br>
+      그게 관계도, 나도 함께 살리는 방법이에요.
+    </p>
+    <a href="https://cal.com/최지애-yyez0i/" class="btn-main fade-up" target="_blank">무료 상담 신청하기</a>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-brand">토닥필라</div>
+  <div class="footer-info">Todak Pila · Seoul Mapo · @cho.cochio</div>
+  <div class="footer-links">
+    <a href="https://instagram.com/cho.cochio" target="_blank">Instagram</a>
+    <a href="https://yayoo3367-jiae.github.io/todak-pilates/mindfull-diagnosis.html" target="_blank">MindFull 진단</a>
+    <a href="https://cal.com/최지애-yyez0i/" target="_blank">상담 신청</a>
+  </div>
+</footer>
+
+<script>
+  // Fade up observer
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.08 });
+
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+  // Sticky CTA
+  const sticky = document.getElementById('sticky');
+  window.addEventListener('scroll', () => {
+    sticky.classList.toggle('visible', window.scrollY > 600);
+  });
+
+  // FAQ toggle
+  function toggleFaq(el) {
+    const item = el.parentElement;
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+  }
+</script>
+
+</body>
+</html>

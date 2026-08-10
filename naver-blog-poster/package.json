@@ -1,0 +1,15 @@
+{
+  "name": "naver-blog-poster",
+  "version": "1.0.0",
+  "private": true,
+  "description": "네이버 블로그 자동 포스팅 도구 (Playwright 기반)",
+  "type": "module",
+  "scripts": {
+    "login": "node src/login.js",
+    "post": "node src/post.js"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "playwright": "^1.47.0"
+  }
+}

@@ -350,7 +350,9 @@
 
   .prog-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: 1fr;
+    max-width: 460px;
+    margin: 0 auto;
     gap: 2px;
   }
 
@@ -428,127 +430,40 @@
   }
 
   /* MINDFULL */
-  .mindfull-sec {
-    background: var(--charcoal);
-    padding: 100px 32px;
-  }
-
-  .mindfull-inner {
-    max-width: 1100px;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 80px;
-    align-items: center;
-  }
-
-  .mindfull-left .sec-label { color: var(--teal-light); }
-
-  .mindfull-title {
-    font-family: 'Noto Serif KR', serif;
-    font-size: clamp(28px, 4vw, 42px);
-    font-weight: 300;
-    color: var(--cream);
-    line-height: 1.5;
-    margin-bottom: 24px;
-  }
-
-  .mindfull-title em {
-    font-style: normal;
-    color: var(--teal-light);
-  }
-
-  .mindfull-desc {
-    font-size: 14px;
-    color: rgba(245,240,232,0.5);
-    line-height: 2.1;
-    margin-bottom: 40px;
-  }
-
-  .mindfull-stages {
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-  }
-
-  .stage-item {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    padding: 20px 24px;
-    background: rgba(245,240,232,0.04);
-    border: 1px solid rgba(122,168,161,0.15);
-    transition: all 0.3s ease;
-  }
-
-  .stage-item:hover {
-    background: rgba(122,168,161,0.08);
-    border-color: rgba(122,168,161,0.3);
-  }
-
-  .stage-icon {
-    font-size: 24px;
-    width: 40px;
+  /* MIND SECONDARY — 마음/생각 패턴 자가진단, 의도적으로 조용한 톤 */
+  .mind-secondary {
+    background: var(--cream);
+    padding: 56px 24px;
     text-align: center;
+    border-top: 1px solid rgba(44,44,44,0.08);
   }
 
-  .stage-name {
-    font-family: 'Noto Serif KR', serif;
-    font-size: 15px;
-    color: var(--cream);
-    margin-bottom: 4px;
-  }
-
-  .stage-desc {
-    font-size: 12px;
-    color: rgba(245,240,232,0.4);
-    line-height: 1.6;
-  }
-
-  .mindfull-cta-box {
-    background: rgba(245,240,232,0.04);
-    border: 1px solid rgba(122,168,161,0.2);
-    padding: 40px;
-    text-align: center;
-  }
-
-  .mindfull-cta-label {
+  .mind-secondary-label {
+    display: block;
     font-size: 10px;
-    letter-spacing: 4px;
-    color: var(--teal-light);
+    letter-spacing: 3px;
+    color: var(--teal);
     text-transform: uppercase;
-    margin-bottom: 16px;
+    margin-bottom: 14px;
   }
 
-  .mindfull-cta-title {
-    font-family: 'Noto Serif KR', serif;
-    font-size: 20px;
-    color: var(--cream);
-    font-weight: 300;
-    margin-bottom: 12px;
-    line-height: 1.5;
-  }
-
-  .mindfull-cta-desc {
+  .mind-secondary-text {
     font-size: 13px;
-    color: rgba(245,240,232,0.45);
+    color: var(--soft);
     line-height: 1.9;
-    margin-bottom: 28px;
+    max-width: 420px;
+    margin: 0 auto 18px;
   }
 
-  .btn-teal {
+  .mind-secondary-link {
     display: inline-block;
-    padding: 14px 40px;
-    background: var(--teal-dark);
-    color: var(--cream);
     font-size: 13px;
-    font-weight: 400;
-    letter-spacing: 1px;
-    text-decoration: none;
-    transition: all 0.3s ease;
+    color: var(--teal-dark);
+    text-decoration: underline;
+    text-underline-offset: 3px;
   }
 
-  .btn-teal:hover { background: var(--teal-light); color: var(--charcoal); }
+  .mind-secondary-link:hover { color: var(--charcoal); }
 
   /* ABOUT */
   .about { background: var(--cream); }
@@ -911,7 +826,6 @@
     .hero-left { padding: 60px 24px; }
     .hero-right { padding: 48px 24px; display: none; }
     .prog-grid { grid-template-columns: 1fr; }
-    .mindfull-inner { grid-template-columns: 1fr; gap: 40px; }
     .about-inner { grid-template-columns: 1fr; gap: 40px; }
     .yt-grid { grid-template-columns: 1fr; }
     .review-grid { grid-template-columns: 1fr; }
@@ -919,7 +833,6 @@
     .nav-inner { padding: 0 20px; }
     .nav-links a { padding: 0 12px; font-size: 12px; }
     .section { padding: 72px 20px; }
-    .mindfull-sec { padding: 72px 20px; }
   }
 </style>
 </head>
@@ -932,8 +845,8 @@
     <div class="nav-links">
       <a href="#body" class="active">몸</a>
       <a href="#mind">마음</a>
-      <a href="./archive/mindfull-diagnosis.html">진단</a>
-      <a href="./archive/todak-sales-page.html">코칭</a>
+      <a href="./mindful.html">진단</a>
+      <a href="./coaching.html">코칭</a>
     </div>
     <a href="https://cal.com/최지애-yyez0i/" class="nav-links nav-cta" target="_blank">무료 상담</a>
   </div>
@@ -956,7 +869,6 @@
     <div class="hero-btns">
       <a href="./landing.html" class="btn-primary">8주 프로그램 알아보기</a>
       <a href="#programs" class="btn-ghost">프로그램 보기</a>
-      <a href="./archive/mindfull-diagnosis.html" class="btn-ghost">자기 사랑 진단</a>
     </div>
   </div>
   <div class="hero-right">
@@ -1015,75 +927,6 @@
         <div class="prog-arrow">→</div>
         </div>
       </a>
-      <a href="./archive/todak-sales-page.html" class="prog-card fade-up" id="mind">
-        <div class="prog-card-num">02</div>
-        <div class="prog-card-tag">Mind · 4주</div>
-        <div class="prog-card-name">토닥 커스<br>마인드 코칭</div>
-        <div class="prog-card-desc">자기 사랑을 처음 배우는 4주. 타인에게 갈구하지 않는 사람이 되는 1:1 화상 코칭.</div>
-        <div class="prog-arrow">→</div>
-      </a>
-      <a href="./archive/mindfull-diagnosis.html" class="prog-card fade-up">
-        <div class="prog-card-num">03</div>
-        <div class="prog-card-tag">Diagnosis · Free</div>
-        <div class="prog-card-name">MindFull<br>자기 사랑 진단</div>
-        <div class="prog-card-desc">나는 지금 나를 얼마나 사랑하고 있을까? 3분 무료 진단으로 자기 사랑 지수를 확인해요.</div>
-        <div class="prog-arrow">→</div>
-      </a>
-    </div>
-  </div>
-</section>
-
-<!-- MINDFULL -->
-<section class="mindfull-sec">
-  <div class="mindfull-inner">
-    <div class="mindfull-left fade-up">
-      <span class="sec-label">MindFull Diagnosis</span>
-      <h2 class="mindfull-title">
-        나는 지금 나를<br>
-        얼마나 <em>사랑하고 있을까?</em>
-      </h2>
-      <p class="mindfull-desc">
-        자기 사랑은 타고나는 게 아니에요.<br>
-        지금 내가 어디에 있는지 아는 것부터 시작해요.<br>
-        3분, 무료, 이메일 없이 바로 확인할 수 있어요.
-      </p>
-      <div class="mindfull-stages">
-        <div class="stage-item">
-          <div class="stage-icon">🌱</div>
-          <div>
-            <div class="stage-name">씨앗 단계</div>
-            <div class="stage-desc">나를 만나기 시작한 단계. 지금 여기 온 것 자체가 시작이에요.</div>
-          </div>
-        </div>
-        <div class="stage-item">
-          <div class="stage-icon">🌿</div>
-          <div>
-            <div class="stage-name">새싹 단계</div>
-            <div class="stage-desc">나를 알아가는 중. 조금만 더 연습하면 돼요.</div>
-          </div>
-        </div>
-        <div class="stage-item">
-          <div class="stage-icon">🌸</div>
-          <div>
-            <div class="stage-name">꽃 단계</div>
-            <div class="stage-desc">나와 연결되어 있어요. 이제 세상과 연결될 차례예요.</div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="fade-up">
-      <div class="mindfull-cta-box">
-        <div class="mindfull-cta-label">무료 진단</div>
-        <div class="mindfull-cta-title">
-          나의 자기 사랑 지수를<br>
-          확인해봐요
-        </div>
-        <div class="mindfull-cta-desc">
-          10문항 · 3분 · 완전 무료<br>
-          자기 인식 · 자기 언어 · 자기 경계 · 자기 위로
-        </div>
-        <a href="./archive/mindfull-diagnosis.html" class="btn-teal">진단 시작하기 →</a>
-      </div>
     </div>
   </div>
 </section>
@@ -1261,6 +1104,19 @@
   </div>
 </section>
 
+<!-- MIND CHECK (secondary, 마인드코칭으로 연결되는 조용한 안내) -->
+<section class="mind-secondary" id="mind">
+  <div class="mind-secondary-inner">
+    <span class="mind-secondary-label">Mind Check</span>
+    <p class="mind-secondary-text">
+      몸을 돌보는 것처럼, 생각도 한 번 들여다보면 편안해져요.<br>
+      나는 어떤 생각 패턴으로 세상을 보고 있을까요?<br>
+      10문항 · 3분 · 무료로 확인해볼 수 있어요.
+    </p>
+    <a href="./mindful.html" class="mind-secondary-link">생각 패턴 진단 해보기 →</a>
+  </div>
+</section>
+
 <!-- FOOTER -->
 <footer>
   <div class="footer-inner">
@@ -1276,8 +1132,8 @@
     </div>
     <div class="footer-links">
       <a href="#body">몸 프로그램</a>
-      <a href="./archive/todak-sales-page.html">마음 코칭</a>
-      <a href="./archive/mindfull-diagnosis.html">자기 사랑 진단</a>
+      <a href="./coaching.html">마음 코칭</a>
+      <a href="./mindful.html">생각 패턴 진단</a>
       <a href="https://cal.com/최지애-yyez0i/" target="_blank">무료 상담 신청</a>
     </div>
     <div>

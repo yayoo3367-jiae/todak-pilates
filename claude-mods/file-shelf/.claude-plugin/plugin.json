@@ -1,0 +1,1 @@
+{ "name": "file-shelf", "version": "0.1.0", "description": "대화 중에 만든 이미지·HTML 파일을 옆 패널에 모아 두고 눌러서 바로 엽니다", "types": "./types/index.d.ts" }

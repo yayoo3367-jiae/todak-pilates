@@ -1,0 +1,1 @@
+{ "name": "script-meter", "version": "0.1.0", "description": "대본 파일을 저장할 때마다 글자 수·예상 낭독 시간·첫 문장 글자 수를 입력창 위에 보여 줍니다", "types": "./types/index.d.ts" }
